@@ -1,0 +1,64 @@
+plantuml
+
+@startuml
+scale 1.5
+actor Restaurante
+boundary ViewCadastroRestaurante <<view>>
+control CadastrarRestauranteController <<controller>>
+entity RestauranteEntity <<entity>>
+
+== Início ==
+Restaurante -> ViewCadastroRestaurante : selecionar "Cadastrar Restaurante"
+activate Restaurante
+activate ViewCadastroRestaurante
+ViewCadastroRestaurante -> CadastrarRestauranteController : iniciarCadastroRestaurante()
+activate CadastrarRestauranteController
+CadastrarRestauranteController --> ViewCadastroRestaurante : exibirFormularioCadastro()
+deactivate CadastrarRestauranteController
+
+== Preenchimento ==
+Restaurante -> ViewCadastroRestaurante : preencherDados(nome, endereço, telefone)
+ViewCadastroRestaurante -> CadastrarRestauranteController : enviarDadosCadastro(dados)
+activate CadastrarRestauranteController
+CadastrarRestauranteController -> RestauranteEntity : validarDadosObrigatorios()
+activate RestauranteEntity
+RestauranteEntity --> CadastrarRestauranteController : dadosValidados
+deactivate RestauranteEntity
+CadastrarRestauranteController --> ViewCadastroRestaurante : statusOk
+deactivate CadastrarRestauranteController
+
+== Horários ==
+Restaurante -> ViewCadastroRestaurante : informarHorariosFuncionamento()
+ViewCadastroRestaurante -> CadastrarRestauranteController : enviarHorarios(horarios)
+activate CadastrarRestauranteController
+CadastrarRestauranteController -> RestauranteEntity : salvarHorarios()
+activate RestauranteEntity
+RestauranteEntity --> CadastrarRestauranteController : horariosSalvos
+deactivate RestauranteEntity
+CadastrarRestauranteController --> ViewCadastroRestaurante : statusOk
+deactivate CadastrarRestauranteController
+
+== Pratos ==
+Restaurante -> ViewCadastroRestaurante : cadastrarPratos()
+ViewCadastroRestaurante -> CadastrarRestauranteController : enviarPratos(pratos)
+activate CadastrarRestauranteController
+CadastrarRestauranteController -> RestauranteEntity : salvarPratos()
+activate RestauranteEntity
+RestauranteEntity --> CadastrarRestauranteController : pratosSalvos
+deactivate RestauranteEntity
+CadastrarRestauranteController --> ViewCadastroRestaurante : statusOk
+deactivate CadastrarRestauranteController
+
+== Finalização ==
+Restaurante -> ViewCadastroRestaurante : revisarEConfirmar()
+ViewCadastroRestaurante -> CadastrarRestauranteController : confirmarCadastro()
+activate CadastrarRestauranteController
+CadastrarRestauranteController -> RestauranteEntity : salvarCadastroFinal()
+activate RestauranteEntity
+RestauranteEntity --> CadastrarRestauranteController : cadastroSalvo
+deactivate RestauranteEntity
+CadastrarRestauranteController --> ViewCadastroRestaurante : statusOk
+deactivate CadastrarRestauranteController
+deactivate ViewCadastroRestaurante
+deactivate Restaurante
+@enduml
