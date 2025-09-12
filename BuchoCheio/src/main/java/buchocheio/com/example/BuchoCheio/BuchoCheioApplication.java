@@ -1,4 +1,4 @@
-package com.projeto.BuchoCheio;
+package buchocheio.com.example.BuchoCheio;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

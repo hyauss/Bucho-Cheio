@@ -1,4 +1,4 @@
-package com.projeto.BuchoCheio;
+package buchocheio.com.example.BuchoCheio;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
