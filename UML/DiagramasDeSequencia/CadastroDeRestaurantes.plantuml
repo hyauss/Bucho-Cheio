@@ -1,5 +1,5 @@
-plantuml
 
+```
 @startuml
 scale 1.5
 actor Restaurante
@@ -62,3 +62,4 @@ deactivate CadastrarRestauranteController
 deactivate ViewCadastroRestaurante
 deactivate Restaurante
 @enduml
+```
