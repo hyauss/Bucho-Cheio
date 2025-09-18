@@ -1,63 +1,36 @@
 @startuml Classes
 title Diagrama de Classes - Bucho-Cheio
 skinparam linetype ortho
-left to right direction
+'left to right direction
 
 ' ======================
 ' Classes Principais
 ' ======================
 class Restaurante {
-    - cnpj: String
-    - nome: String
-    - email: String
-    - endereco: String
-    - telefone: String
-    - horarioAbertura: String
-    - horarioFechamento: String
-    + cadastraRestaurante(): void
-    + atualizaCardapio(): void
-    + cadastraHorario(): void
 }
 
 class Relatorio {
-    - dataGeracao: Date
-    - tipoRelatorio: String
-    + gerarRelatorio(): void
 }
 
 class Usuario {
-    - nome: String
-    - email: String
-    - senha: String
-    + login(): boolean
-    + consultaRestaurantes(): List<Restaurante>
-    + avaliaRestaurante(): void
 }
 
 class Avaliacao {
-    - nota: int
-    - comentario: String
-    - data: Date
-    + registrarAvaliacao(): void
 }
 
 class Prato {
-    - nome: String
-    - preco: float
-    - descricao: String
-    - quantidadeDisponivel: int
-    + atualizaPrato(): void
 }
 
 ' ======================
 ' Relacionamentos
 ' ======================
-Usuario "1" -u- "0..*" Avaliacao : realiza
-Restaurante "1" -- "0..*" Avaliacao : recebe
+Usuario "1" --- "N" Avaliacao : realiza
+Restaurante "1" -u- "N" Avaliacao : recebe
 
-Restaurante "1" -- "0..*" Prato : possui
+Restaurante "1" -- "N" Prato : possui
 
-Relatorio "1" -u- "0..*" Restaurante : inclui
-Usuario "1" -u- "0..*" Relatorio : consulta
+Relatorio "1" -- "N" Restaurante : inclui
+Usuario "1" --- "N" Relatorio : consulta
+Usuario "1" -- "N" Restaurante : consulta
 
 @enduml
