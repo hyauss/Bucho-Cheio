@@ -11,5 +11,9 @@ public class restauranteModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+    private Long[] idPratos; 
+    private String localizacao;
+    private String nome;
+    private String CNPJ;
+
 }

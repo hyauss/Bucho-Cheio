@@ -8,11 +8,16 @@ skinparam linetype ortho
 ' ======================
 class Restaurante {
     - Long id
+    - int[] idPratos
+    - String localizacao
+    - String nome
+    - String CNPJ
     + findRestauranteById()
 }
 
 class Relatorio {
-
+    - Long idRestaurante
+    + criarRelatorio()
 }
 
 class Usuario {
@@ -31,7 +36,9 @@ class Avaliacao {
 }
 
 class Prato {
-    
+    - float preco
+    - String nome
+    - String descricao
 }
 
 ' ======================

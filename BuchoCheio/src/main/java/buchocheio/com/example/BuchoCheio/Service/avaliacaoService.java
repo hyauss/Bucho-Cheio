@@ -27,6 +27,7 @@ public class avaliacaoService {
 			return null;
 		}
 	}
+	
 
 	public List getAllAvaliacoes(){
 		return this.avaliacaoRepository.findAll();
