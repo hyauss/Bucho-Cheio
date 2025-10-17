@@ -22,6 +22,7 @@ class Avaliacao {
     - Long id
     - Long restauranteId
     - String avaliacao
+    - Int nota
     + saveAvaliacao()
     + getAllAvaliacoes()
 

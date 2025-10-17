@@ -12,9 +12,16 @@ public class avaliacaoModel {
     private Long id;
     private Long restauranteId;
     private String avaliacao;
+    private int nota;
 
     public Long getId() {
         return id;
+    }
+    public int getNota() {
+        return nota;
+    }
+    public void setNota(int nota) {
+        this.nota = nota;
     }
     public void setId(Long id) {
         this.id = id;
@@ -32,16 +39,15 @@ public class avaliacaoModel {
         this.avaliacao = avaliacao;
     }
 
-    public avaliacaoModel(Long id, Long restauranteId, String avaliacao) {
-        this.id = id;
-        this.restauranteId = restauranteId;
-        this.avaliacao = avaliacao;
-    }
-
     public avaliacaoModel() {
         this.restauranteId = null;
         this.avaliacao = "";
+        this.nota=-1;
     }
-
-    
+    public avaliacaoModel(Long id, Long restauranteId, String avaliacao, int nota) {
+        this.id = id;
+        this.restauranteId = restauranteId;
+        this.avaliacao = avaliacao;
+        this.nota = nota;
+    }
 }
