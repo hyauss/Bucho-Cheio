@@ -13,11 +13,16 @@ import buchocheio.com.example.BuchoCheio.Repository.avaliacaoRepository;
 public class avaliacaoService {
 	@Autowired private avaliacaoRepository avaliacaoRepository;
 	@Autowired private restauranteService restauranteService;
+
+	public avaliacaoModel findAvaliacaoById(Long id){
+		avaliacaoModel avaliacao = avaliacaoRepository.findAvaliacaoById(id);
+		return avaliacao;
+		}
 	
-	public  avaliacaoModel saveAvaliacao(avaliacaoModel avalicao){
-		restauranteModel restaurante = restauranteService.findRestauranteById(avalicao.getRestauranteId());
-		if(restaurante!=null){
-			return avaliacaoRepository.save(avalicao);
+	public  avaliacaoModel saveAvaliacao(avaliacaoModel avaliacao){
+		restauranteModel restaurante = restauranteService.findRestauranteById(avaliacao.getRestauranteId());
+		if(restaurante!=null && (avaliacao.getNota()<=10 &&  avaliacao.getNota() >=0)){
+			return avaliacaoRepository.save(avaliacao);
 		}else{
 			return null;
 		}
@@ -26,5 +31,4 @@ public class avaliacaoService {
 	public List getAllAvaliacoes(){
 		return this.avaliacaoRepository.findAll();
 	}
-
 }

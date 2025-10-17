@@ -7,6 +7,5 @@ import buchocheio.com.example.BuchoCheio.Model.avaliacaoModel;
 
 @Repository
 public interface avaliacaoRepository extends JpaRepository<avaliacaoModel, Long> {
-
-    // Consulta customizada: buscar todas avaliações de um restaurante específico
+    avaliacaoModel findAvaliacaoById(Long avaliacaoId);
 }

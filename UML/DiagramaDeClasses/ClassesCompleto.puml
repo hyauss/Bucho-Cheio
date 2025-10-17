@@ -7,7 +7,8 @@ skinparam linetype ortho
 ' Classes Principais
 ' ======================
 class Restaurante {
-    
+    - Long id
+    + findRestauranteById()
 }
 
 class Relatorio {
@@ -25,6 +26,7 @@ class Avaliacao {
     - Int nota
     + saveAvaliacao()
     + getAllAvaliacoes()
+    + findAvaliacaoById()
 
 }
 
