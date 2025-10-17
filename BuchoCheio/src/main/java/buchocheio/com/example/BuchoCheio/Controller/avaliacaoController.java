@@ -27,6 +27,5 @@ public class avaliacaoController {
     @PostMapping("/buchoCheio/avaliacao")
     public avaliacaoModel saveAvaliacao(@RequestBody avaliacaoModel avalicao) {    
         return this.avaliacaoService.saveAvaliacao(avalicao);
-    }
-    
+    }    
 }
