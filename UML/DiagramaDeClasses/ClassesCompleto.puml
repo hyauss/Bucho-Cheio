@@ -11,8 +11,14 @@ class Restaurante {
     - int[] idPratos
     - String localizacao
     - String nome
-    - String CNPJ
+    - String cnpj
+    - String horarioFuncionamento
+    - String telefone
     + findRestauranteById()
+    + cadastrarRestaurante()
+    + listarTodos()
+    + filtrarPorLocalizacao()
+    + filtrarPorHorario
 }
 
 class Relatorio {
