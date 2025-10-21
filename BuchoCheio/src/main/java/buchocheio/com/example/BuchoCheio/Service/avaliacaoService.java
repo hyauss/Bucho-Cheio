@@ -12,6 +12,7 @@ import buchocheio.com.example.BuchoCheio.Repository.avaliacaoRepository;
 @Service
 public class avaliacaoService {
 	@Autowired private avaliacaoRepository avaliacaoRepository;
+	
 	@Autowired private restauranteService restauranteService;
 
 	public avaliacaoModel findAvaliacaoById(Long id){
