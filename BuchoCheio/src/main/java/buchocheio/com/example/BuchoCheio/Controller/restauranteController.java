@@ -1,4 +1,6 @@
 package buchocheio.com.example.BuchoCheio.Controller;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,8 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 import buchocheio.com.example.BuchoCheio.Model.restauranteModel;
 import buchocheio.com.example.BuchoCheio.Service.restauranteService;
 
-import java.util.List;
-
 
 @RestController
 
@@ -20,7 +20,7 @@ public class restauranteController {
       private restauranteService restauranteService;
     
     // Cadastrar restaurante
-    @PostMapping
+    @PostMapping("/buchoCheio/cadastrarRestaurante")
     public restauranteModel cadastrarRestaurante(@RequestBody restauranteModel restaurante) {
         return restauranteService.cadastrarRestaurante(restaurante);
     }
@@ -32,7 +32,7 @@ public class restauranteController {
     }
     
     // Listar todos (para a parte de consulta)
-    @GetMapping
+    @GetMapping("buchoCheio/listarTodos")
     public List<restauranteModel> listarTodos() {
         return restauranteService.listarTodos();
     }
