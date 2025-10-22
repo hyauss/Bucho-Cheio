@@ -1,12 +1,12 @@
 package buchocheio.com.example.BuchoCheio.Service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import buchocheio.com.example.BuchoCheio.Model.restauranteModel;
 import buchocheio.com.example.BuchoCheio.Repository.restauranteRepository;
-
-import java.util.List;
 
 
 
@@ -50,11 +50,11 @@ public class restauranteService {
 
 	// Filtrar por localização
     public List<restauranteModel> filtrarPorLocalizacao(String localizacao) {
-        return restauranteRepository.findByLocalizacaoContainingIgnoreCase(localizacao);
+        return restauranteRepository.findByEndereco(localizacao);
     }
 
     // Filtrar por horário
     public List<restauranteModel> filtrarPorHorario(String horario) {
-        return restauranteRepository.findByHorarioFuncionamentoContainingIgnoreCase(horario);
+        return restauranteRepository.findByHorarioFuncionamento(horario);
     }
 }
