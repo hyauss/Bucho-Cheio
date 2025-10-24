@@ -12,3 +12,5 @@ public interface restauranteRepository extends JpaRepository<restauranteModel, L
     restauranteModel addPrato(Long restauranteId,Long pratoId);
     restauranteModel removePrato(Long idRestaurante, Long idPrato);
 }
+    restauranteModel findRestauranteBycnpj(String cnpj);
+}
