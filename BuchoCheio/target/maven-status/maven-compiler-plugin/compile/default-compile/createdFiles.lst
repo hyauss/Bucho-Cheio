@@ -1,6 +1,6 @@
-buchocheio/com/example/BuchoCheio/Service/testService.class
-buchocheio/com/example/BuchoCheio/BuchoCheioApplication.class
-buchocheio/com/example/BuchoCheio/Model/usuarioModel.class
-buchocheio/com/example/BuchoCheio/Model/restauranteModel.class
-buchocheio/com/example/BuchoCheio/Service/usuarioService.class
-buchocheio/com/example/BuchoCheio/Service/restauranteService.class
+buchocheio\com\example\BuchoCheio\Service\usuarioService.class
+buchocheio\com\example\BuchoCheio\Service\testService.class
+buchocheio\com\example\BuchoCheio\Model\usuarioModel.class
+buchocheio\com\example\BuchoCheio\Service\restauranteService.class
+buchocheio\com\example\BuchoCheio\BuchoCheioApplication.class
+buchocheio\com\example\BuchoCheio\Model\restauranteModel.class
