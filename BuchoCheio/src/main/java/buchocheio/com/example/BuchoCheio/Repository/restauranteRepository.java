@@ -8,4 +8,7 @@ import buchocheio.com.example.BuchoCheio.Model.restauranteModel;
 
 public interface restauranteRepository extends JpaRepository<restauranteModel, Long> {
     restauranteModel findRestauranteById(Long restauranteId);
+
+    restauranteModel addPrato(Long restauranteId,Long pratoId);
+    restauranteModel removePrato(Long idRestaurante, Long idPrato);
 }
