@@ -11,11 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 import buchocheio.com.example.BuchoCheio.Model.avaliacaoModel;
 import buchocheio.com.example.BuchoCheio.Service.avaliacaoService;
 
-
 @RestController
 
 public class avaliacaoController {
-    
+
     @Autowired
     private avaliacaoService avaliacaoService;
 
@@ -23,9 +22,9 @@ public class avaliacaoController {
     public List getAllAvaliacoes() {
         return avaliacaoService.getAllAvaliacoes();
     }
-    
+
     @PostMapping("/buchoCheio/avaliacao")
-    public avaliacaoModel saveAvaliacao(@RequestBody avaliacaoModel avalicao) {    
+    public avaliacaoModel saveAvaliacao(@RequestBody avaliacaoModel avalicao) {
         return this.avaliacaoService.saveAvaliacao(avalicao);
-    }    
+    }
 }

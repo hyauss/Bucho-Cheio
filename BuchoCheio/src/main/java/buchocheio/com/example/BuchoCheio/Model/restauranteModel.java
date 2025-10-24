@@ -71,6 +71,8 @@ public class restauranteModel {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
+    
     public restauranteModel(Long id, Long[] idPratos, String endereco, String nome, String cnpj,
             String horarioFuncionamento, String telefone, String senha) {
         this.id = id;
@@ -85,6 +87,4 @@ public class restauranteModel {
     
     public restauranteModel() {
     }
-    
-    
 }
