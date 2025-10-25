@@ -10,5 +10,16 @@ import jakarta.persistence.Id;
 public class relatorioModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idRestaurante;
+
+    public Long getId() {
+        return idRestaurante;
+    }
+    public void setId(Long idRestaurante) {
+        this.idRestaurante = idRestaurante;
+    }
+
+    public relatorioModel(Long idRestaurante) {
+        this.idRestaurante = idRestaurante;
+    }
 }
