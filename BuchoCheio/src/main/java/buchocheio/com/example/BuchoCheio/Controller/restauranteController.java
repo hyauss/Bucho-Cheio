@@ -1,6 +1,7 @@
 package buchocheio.com.example.BuchoCheio.Controller;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,24 +27,17 @@ public class restauranteController {
         return restauranteService.findRestauranteById(id);
     }
 
-    @PostMapping("/addPrato/{idRestaurante}/{idPrato}")
-    public String addPrato(@PathVariable Long idRestaurante, @PathVariable Long idPrato) {
-        restauranteService.addPrato(idRestaurante, idPrato);
-        return "Prato adicionado com sucesso ao restaurante " + idRestaurante;
-    }
-
-    @DeleteMapping("/removePrato/{idRestaurante}/{idPrato}")
-    public String removePrato(@PathVariable Long idRestaurante, @PathVariable Long idPrato) {
-        restauranteService.removePrato(idRestaurante, idPrato);
-        return "Prato removido com sucesso do restaurante " + idRestaurante;
+     @GetMapping("/restaurantes")
+    public List getAllRestaurantes() {
+        return restauranteService.getAllRestaurantes();
     }
     
-    @GetMapping("/buchoCheio/loginRestaurante/{cnpj}/{senha}")
+    @GetMapping("/loginRestaurante/{cnpj}/{senha}")
     public loginResponseModel getMethodName(@PathVariable String cnpj,@PathVariable String senha) {
         return restauranteService.loginRestaurante(cnpj,senha);
     }
 
-     @PostMapping("/buchoCheio/cadastrarRestaurante")
+     @PostMapping("/cadastrarRestaurante")
     public restauranteModel cadastrarRestaurante(@RequestBody restauranteModel restaurante) {
         return restauranteService.cadastrarRestaurante(restaurante);
     }
