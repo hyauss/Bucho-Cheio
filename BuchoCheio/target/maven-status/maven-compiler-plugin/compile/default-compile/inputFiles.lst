@@ -9,6 +9,7 @@
 /Users/viniciusalvesmarques/Documents/GitHub/Bucho-Cheio/BuchoCheio/src/main/java/buchocheio/com/example/BuchoCheio/Model/restauranteModel.java
 /Users/viniciusalvesmarques/Documents/GitHub/Bucho-Cheio/BuchoCheio/src/main/java/buchocheio/com/example/BuchoCheio/Model/usuarioModel.java
 /Users/viniciusalvesmarques/Documents/GitHub/Bucho-Cheio/BuchoCheio/src/main/java/buchocheio/com/example/BuchoCheio/Repository/avaliacaoRepository.java
+/Users/viniciusalvesmarques/Documents/GitHub/Bucho-Cheio/BuchoCheio/src/main/java/buchocheio/com/example/BuchoCheio/Repository/pratoRepository.java
 /Users/viniciusalvesmarques/Documents/GitHub/Bucho-Cheio/BuchoCheio/src/main/java/buchocheio/com/example/BuchoCheio/Repository/restauranteRepository.java
 /Users/viniciusalvesmarques/Documents/GitHub/Bucho-Cheio/BuchoCheio/src/main/java/buchocheio/com/example/BuchoCheio/Repository/usuarioRepository.java
 /Users/viniciusalvesmarques/Documents/GitHub/Bucho-Cheio/BuchoCheio/src/main/java/buchocheio/com/example/BuchoCheio/Service/avaliacaoService.java

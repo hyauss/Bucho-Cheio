@@ -1,9 +1,13 @@
 package buchocheio.com.example.BuchoCheio.Service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import buchocheio.com.example.BuchoCheio.Model.pratoModel;
 import buchocheio.com.example.BuchoCheio.Model.restauranteModel;
+import buchocheio.com.example.BuchoCheio.Repository.pratoRepository;
 import buchocheio.com.example.BuchoCheio.Repository.restauranteRepository;
 
 @Service
@@ -11,63 +15,55 @@ public class pratoService {
 
 	@Autowired
 	private restauranteRepository restauranteRepository;
-	
+
 	@Autowired
 	private restauranteService restauranteService;
 
-	//id restaurante salvar prato, salvar id do prato salvo no resturante
-	public void addPrato(Long idRestaurante, Long idPrato) {
-		// Busca o restaurante pelo ID
+	@Autowired
+	private pratoRepository pratoRepository;
+
+	public pratoModel addPrato(Long idRestaurante, pratoModel prato) {
 		restauranteModel restaurante = restauranteService.findRestauranteById(idRestaurante);
 		if (restaurante == null) {
 			System.out.println("Restaurante não encontrado!");
-			return;
+			return null;
 		}
-		Long[] idPratos = restaurante.getIdPratos();
-		boolean inserido = false;
-		// Procura a primeira posição livre (nula ou 0)
-		for (int i = 0; i < idPratos.length; i++) {
-			if (idPratos[i] == null || idPratos[i] == 0) {
-				idPratos[i] = idPrato;
-				inserido = true;
-				break;
-			}
-		}
-		if (!inserido) {
-			System.out.println("Não foi possível adicionar o prato: lista cheia!");
-			return;
-		}
-		// Atualiza o array no modelo
-		restaurante.setIdPratos(idPratos);
-		// Salva novamente no banco
+
+		// Salva o prato no banco
+		pratoRepository.save(prato);
+
+		// Adiciona o ID do prato à lista do restaurante
+		restaurante.getIdPratos().add(prato.getId());
+
+		// Atualiza o restaurante
 		restauranteRepository.save(restaurante);
+
+		System.out.println("Prato adicionado com sucesso ao restaurante " + idRestaurante);
+
+		return prato;
 	}
 
-	//deletar prato no modelo
-	public void removePrato(Long idRestaurante, Long idPrato) {
+	public boolean removePrato(Long idRestaurante, Long idPrato) {
 		// Busca o restaurante pelo ID
 		restauranteModel restaurante = restauranteService.findRestauranteById(idRestaurante);
 		if (restaurante == null) {
 			System.out.println("Restaurante não encontrado!");
-			return;
+			return false;
 		}
-		Long[] idPratos = restaurante.getIdPratos();
-		boolean removido = false;
-		// Procura o idPrato e remove (define como 0)
-		for (int i = 0; i < idPratos.length; i++) {
-			if (idPratos[i] != null && idPratos[i].equals(idPrato)) {
-				idPratos[i] = 0L; // marca posição como vazia
-				removido = true;
-				break;
-			}
+		if(restaurante.getIdPratos().contains(idPrato)!= true){
+			return false;
 		}
-		if (!removido) {
-			System.out.println("Prato não encontrado no restaurante!");
-			return;
-		}
-		// Atualiza o array no modelo
-		restaurante.setIdPratos(idPratos);
+		// Atualiza a lista no modelo
+		restaurante.getIdPratos().remove(idPrato);
+		// Deleta o prato no banco
+		pratoRepository.deleteById(idPrato);
 		// Persiste a alteração no banco
 		restauranteRepository.save(restaurante);
+		return true;
 	}
+
+	public List<pratoModel> getAllPratosRestaurante(Long restauranteId) {
+    return this.pratoRepository.findByRestauranteId(restauranteId);
+}
+
 }

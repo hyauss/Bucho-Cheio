@@ -1,16 +1,26 @@
 package buchocheio.com.example.BuchoCheio.Model;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-
 public class pratoModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private Long restauranteId;
     private float preco;
+
+    public Long getRestauranteI() {
+        return restauranteId;
+    }
+
+    public void setrestauranteId(Long restauranteId) {
+        this.restauranteId = restauranteId;
+    }
+
     private String nome;
     private String descricao;
 
@@ -46,16 +56,15 @@ public class pratoModel {
         this.descricao = descricao;
     }
 
-    public pratoModel() {
-        this.preco=-1;
-        this.nome = "";
-        this.descricao = "";
-        
-    }
-    public pratoModel(Long id,float preco, String nome, String descricao) {
+    public pratoModel(Long id, Long restauranteId, float preco, String nome, String descricao) {
         this.id = id;
+        this.restauranteId = restauranteId;
         this.preco = preco;
         this.nome = nome;
         this.descricao = descricao;
     }
+
+    public pratoModel() {
+    }
+
 }
