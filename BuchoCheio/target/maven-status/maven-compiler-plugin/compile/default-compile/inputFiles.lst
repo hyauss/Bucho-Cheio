@@ -1,5 +1,6 @@
 /Users/viniciusalvesmarques/Documents/GitHub/Bucho-Cheio/BuchoCheio/src/main/java/buchocheio/com/example/BuchoCheio/BuchoCheioApplication.java
 /Users/viniciusalvesmarques/Documents/GitHub/Bucho-Cheio/BuchoCheio/src/main/java/buchocheio/com/example/BuchoCheio/Controller/avaliacaoController.java
+/Users/viniciusalvesmarques/Documents/GitHub/Bucho-Cheio/BuchoCheio/src/main/java/buchocheio/com/example/BuchoCheio/Controller/pratoController.java
 /Users/viniciusalvesmarques/Documents/GitHub/Bucho-Cheio/BuchoCheio/src/main/java/buchocheio/com/example/BuchoCheio/Controller/restauranteController.java
 /Users/viniciusalvesmarques/Documents/GitHub/Bucho-Cheio/BuchoCheio/src/main/java/buchocheio/com/example/BuchoCheio/Model/avaliacaoModel.java
 /Users/viniciusalvesmarques/Documents/GitHub/Bucho-Cheio/BuchoCheio/src/main/java/buchocheio/com/example/BuchoCheio/Model/loginResponseModel.java
@@ -8,9 +9,11 @@
 /Users/viniciusalvesmarques/Documents/GitHub/Bucho-Cheio/BuchoCheio/src/main/java/buchocheio/com/example/BuchoCheio/Model/restauranteModel.java
 /Users/viniciusalvesmarques/Documents/GitHub/Bucho-Cheio/BuchoCheio/src/main/java/buchocheio/com/example/BuchoCheio/Model/usuarioModel.java
 /Users/viniciusalvesmarques/Documents/GitHub/Bucho-Cheio/BuchoCheio/src/main/java/buchocheio/com/example/BuchoCheio/Repository/avaliacaoRepository.java
+/Users/viniciusalvesmarques/Documents/GitHub/Bucho-Cheio/BuchoCheio/src/main/java/buchocheio/com/example/BuchoCheio/Repository/pratoRepository.java
 /Users/viniciusalvesmarques/Documents/GitHub/Bucho-Cheio/BuchoCheio/src/main/java/buchocheio/com/example/BuchoCheio/Repository/restauranteRepository.java
 /Users/viniciusalvesmarques/Documents/GitHub/Bucho-Cheio/BuchoCheio/src/main/java/buchocheio/com/example/BuchoCheio/Repository/usuarioRepository.java
 /Users/viniciusalvesmarques/Documents/GitHub/Bucho-Cheio/BuchoCheio/src/main/java/buchocheio/com/example/BuchoCheio/Service/avaliacaoService.java
+/Users/viniciusalvesmarques/Documents/GitHub/Bucho-Cheio/BuchoCheio/src/main/java/buchocheio/com/example/BuchoCheio/Service/pratoService.java
 /Users/viniciusalvesmarques/Documents/GitHub/Bucho-Cheio/BuchoCheio/src/main/java/buchocheio/com/example/BuchoCheio/Service/restauranteService.java
 /Users/viniciusalvesmarques/Documents/GitHub/Bucho-Cheio/BuchoCheio/src/main/java/buchocheio/com/example/BuchoCheio/Service/testService.java
 /Users/viniciusalvesmarques/Documents/GitHub/Bucho-Cheio/BuchoCheio/src/main/java/buchocheio/com/example/BuchoCheio/Service/usuarioService.java
