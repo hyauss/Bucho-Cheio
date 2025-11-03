@@ -50,7 +50,7 @@ public class pratoService {
 			System.out.println("Restaurante não encontrado!");
 			return false;
 		}
-		if(restaurante.getIdPratos().contains(idPrato)!= true){
+		if (restaurante.getIdPratos().contains(idPrato) != true) {
 			return false;
 		}
 		// Atualiza a lista no modelo
@@ -63,7 +63,6 @@ public class pratoService {
 	}
 
 	public List<pratoModel> getAllPratosRestaurante(Long restauranteId) {
-    return this.pratoRepository.findByRestauranteId(restauranteId);
-}
-
+		return this.pratoRepository.findByRestauranteId(restauranteId);
+	}
 }
