@@ -1,5 +1,9 @@
 package buchocheio.com.example.BuchoCheio.Model;
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,7 +16,8 @@ public class restauranteModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long[] idPratos; 
+    @ElementCollection
+    private List<Long> idPratos = new ArrayList<>();
     private String endereco;
     private String nome;
 
@@ -29,10 +34,11 @@ public class restauranteModel {
     public void setId(Long id) {
         this.id = id;
     }
-    public Long[] getIdPratos() {
+
+     public List<Long> getIdPratos() {
         return idPratos;
     }
-    public void setIdPratos(Long[] idPratos) {
+    public void setIdPratos(List<Long> idPratos) {
         this.idPratos = idPratos;
     }
     public String getEndereco() {
@@ -71,7 +77,8 @@ public class restauranteModel {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    public restauranteModel(Long id, Long[] idPratos, String endereco, String nome, String cnpj,
+    
+    public restauranteModel(Long id, List<Long> idPratos, String endereco, String nome, String cnpj,
             String horarioFuncionamento, String telefone, String senha) {
         this.id = id;
         this.idPratos = idPratos;
@@ -82,9 +89,7 @@ public class restauranteModel {
         this.telefone = telefone;
         this.senha = senha;
     }
-    
     public restauranteModel() {
     }
-    
-    
+   
 }

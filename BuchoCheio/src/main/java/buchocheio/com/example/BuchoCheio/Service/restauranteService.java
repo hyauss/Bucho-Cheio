@@ -1,5 +1,7 @@
 package buchocheio.com.example.BuchoCheio.Service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,28 +29,32 @@ public class restauranteService {
 		return restaurante;
 	}
 
-public loginResponseModel loginRestaurante(String cnpj, String senha) {
-    restauranteModel restaurante = restauranteRepository.findRestauranteBycnpj(cnpj);
-    
-    if (restaurante == null) {
-        return new loginResponseModel(false, "Restaurante não cadastrado", null);
-    }
+	public List getAllRestaurantes(){
+		return this.restauranteRepository.findAll();
+	}
+	
+	public loginResponseModel loginRestaurante(String cnpj, String senha) {
+		restauranteModel restaurante = restauranteRepository.findRestauranteBycnpj(cnpj);
 
-    // Comparar conteúdo da String corretamente
-    if (!senha.equals(restaurante.getSenha())) {
-        return new loginResponseModel(false, "Senha incorreta", null);
-    }
+		if (restaurante == null) {
+			return new loginResponseModel(false, "Restaurante não cadastrado", null);
+		}
 
-    return new loginResponseModel(true, "Login realizado com sucesso", restaurante);
-}
+		// Comparar conteúdo da String corretamente
+		if (!senha.equals(restaurante.getSenha())) {
+			return new loginResponseModel(false, "Senha incorreta", null);
+		}
 
-public restauranteModel cadastrarRestaurante(restauranteModel restaurante) {
-	restauranteModel restauranteBd = restauranteRepository.findRestauranteBycnpj(restaurante.getCnpj());
-		if(restauranteBd!=null){
+		return new loginResponseModel(true, "Login realizado com sucesso", restaurante);
+	}
+
+	public restauranteModel cadastrarRestaurante(restauranteModel restaurante) {
+		restauranteModel restauranteBd = restauranteRepository.findRestauranteBycnpj(restaurante.getCnpj());
+		if (restauranteBd != null) {
 			return null;
-		}else{
+		} else {
 			return restauranteRepository.save(restaurante);
 		}
-    }
+	}
 
 }
