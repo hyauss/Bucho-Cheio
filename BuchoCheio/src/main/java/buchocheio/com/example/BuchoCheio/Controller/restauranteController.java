@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import buchocheio.com.example.BuchoCheio.Model.loginResponseModel;
 import buchocheio.com.example.BuchoCheio.Model.restauranteModel;
 import buchocheio.com.example.BuchoCheio.Service.restauranteService;
+import buchocheio.com.example.BuchoCheio.Model.pratoModel;
+
 
 
 @RequestMapping("/buchoCheio") // agrupa os endpoints
@@ -41,5 +43,14 @@ public class restauranteController {
     public restauranteModel cadastrarRestaurante(@RequestBody restauranteModel restaurante) {
         return restauranteService.cadastrarRestaurante(restaurante);
     }
+
+    @PostMapping("/restaurante/{id}/pratos")
+    public restauranteModel adicionarPratos(@PathVariable Long id, @RequestBody List<pratoModel> pratos) {
+        return restauranteService.adicionarPratos(id, pratos);
+    }
+
+    @Autowired
+    private buchocheio.com.example.BuchoCheio.Service.pratoService pratoService;
+
 
 }

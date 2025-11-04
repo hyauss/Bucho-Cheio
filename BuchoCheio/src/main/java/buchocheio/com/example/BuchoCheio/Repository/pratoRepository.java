@@ -10,6 +10,6 @@ import buchocheio.com.example.BuchoCheio.Model.pratoModel;
 @Repository
 
 public interface pratoRepository extends JpaRepository<pratoModel, Long> {
-    pratoModel findRestauranteById(Long pratoId);
+    pratoModel findPratoById(Long pratoId);
     List<pratoModel> findByRestauranteId(Long restauranteId);
 }

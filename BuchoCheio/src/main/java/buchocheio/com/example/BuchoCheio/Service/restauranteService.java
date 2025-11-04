@@ -8,12 +8,17 @@ import org.springframework.stereotype.Service;
 import buchocheio.com.example.BuchoCheio.Model.loginResponseModel;
 import buchocheio.com.example.BuchoCheio.Model.restauranteModel;
 import buchocheio.com.example.BuchoCheio.Repository.restauranteRepository;
+import buchocheio.com.example.BuchoCheio.Repository.pratoRepository;
+import buchocheio.com.example.BuchoCheio.Model.pratoModel;
 
 @Service
 public class restauranteService {
 
 	@Autowired
 	private restauranteRepository restauranteRepository;
+
+	@Autowired
+	private pratoRepository pratoRepository;
 
 	public boolean Verificarlogar(String id) {
 		String dadoMocadoDoBanco = "asdsadsadsadsda";
@@ -55,6 +60,19 @@ public class restauranteService {
 		} else {
 			return restauranteRepository.save(restaurante);
 		}
+	}
+
+	public restauranteModel adicionarPratos(Long restauranteId, List<pratoModel> pratos) {
+    restauranteModel restaurante = restauranteRepository.findRestauranteById(restauranteId);
+    	if (restaurante == null) {
+        	throw new RuntimeException("Restaurante não encontrado com ID: " + restauranteId);
+    	}
+    	for (pratoModel prato : pratos) {
+    		prato.setrestauranteId(restauranteId);
+        	pratoModel pratoSalvo = pratoRepository.save(prato);
+        	restaurante.getIdPratos().add(pratoSalvo.getId());
+    	}
+    	return restauranteRepository.save(restaurante);
 	}
 
 }
