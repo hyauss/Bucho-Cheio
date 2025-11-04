@@ -1,27 +1,43 @@
 <template>
   <div>
     <h2>Avaliar Restaurante {{ id }}</h2>
-    <div>
-      <label>Nota (1-5)</label>
-      <input type="number" v-model.number="rating" min="1" max="5" />
-    </div>
-    <div>
-      <label>Comentário</label>
-      <textarea v-model="comment"></textarea>
-    </div>
-    <button @click="sendReview">Enviar Avaliação</button>
+    <form @submit.prevent="sendReview">
+      <div>
+        <label>Nota (1-5)</label>
+        <input type="number" v-model.number="nota" min="1" max="5" required />
+      </div>
+
+      <div>
+        <label>Comentário</label>
+        <textarea v-model="avaliacao" required></textarea>
+      </div>
+
+      <button type="submit">Enviar Avaliação</button>
+    </form>
   </div>
 </template>
 
 <script>
 import api from '../services/api';
+
 export default {
   props: ['id'],
-  data() { return { rating: 5, comment: '' } },
+  data() {
+    return {
+      nota: 5,
+      avaliacao: ''
+    }
+  },
   methods: {
     async sendReview() {
       try {
-        await api.postReview(this.id, { rating: this.rating, comment: this.comment })
+        // monta o JSON exatamente como o backend espera
+        const payload = {
+          restauranteId: this.id,
+          avaliacao: this.avaliacao,
+          nota: this.nota
+        }
+        await api.postReview(payload)
         alert('Avaliação enviada!')
         this.$router.push({ name: 'restaurants' })
       } catch (err) {
