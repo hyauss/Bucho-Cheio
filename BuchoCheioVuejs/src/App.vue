@@ -1,47 +1,83 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+  <div>
+    <TopBar @toggle-sidebar="toggleSidebar" />
+    <div id="sidebar" :class="{'sidebar-hidden': !isSidebarVisible}" class="sidebar">
+      <a @click.prevent="$router.push('/')" href="#" class="sidebar-link">Home</a>
+      <a @click.prevent="$router.push('/restaurants')" href="#" class="sidebar-link">Restaurantes</a>
+      <a @click.prevent="$router.push('/restaurants/new')" href="#" class="sidebar-link">Cadastrar</a>
+      <a @click.prevent="$router.push('/reports')" href="#" class="sidebar-link">Relatórios</a>
     </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+    <main class="container">
+      <router-view />
+    </main>
+  </div>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
+<script>
+import TopBar from './components/TopBar.vue';
+
+export default {
+  components: { TopBar },
+  data() {
+    return {
+      isSidebarVisible: true, // Controla a visibilidade da sidebar
+    };
+  },
+  methods: {
+    toggleSidebar() {
+      this.isSidebarVisible = !this.isSidebarVisible; // Alterna a visibilidade da sidebar
+    }
+  }
+}
+</script>
+
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+#sidebar {
+  position: fixed;
+  top: 60px; /* Ajusta a sidebar para aparecer abaixo da topbar */
+  left: 0;
+  width: 200px;
+  height: 100%;
+  background-color: #333;
+  z-index: 1000;
+  padding-top: 20px;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  color: white;
+  transition: transform 0.3s ease;
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
+.sidebar-hidden {
+  transform: translateX(-250px); /* A sidebar se move para fora da tela */
+}
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
+.sidebar-link {
+  text-decoration: none;
+  color: white;
+  margin-bottom: 16px;
+  font-size: 18px;
+  transition: background-color 0.3s;
+}
 
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+.sidebar-link:hover {
+  background-color: #444;
+  padding-left: 10px;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  padding: 20px;
+  max-width: 2000px;
+  transition: margin-left 0.3s;
+  margin-top: 40px; /* Diminui a margem superior para evitar sobreposição com a top bar */
 }
 </style>
