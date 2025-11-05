@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:8080/api'
+const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:8080/buchoCheio'
 
 const api = axios.create({
   baseURL: API_BASE,
@@ -17,10 +17,10 @@ api.interceptors.response.use(
 )
 
 export default {
-  getRestaurants() { return api.get('/restaurants') },
-  getRestaurant(id) { return api.get(`/restaurants/${id}`) },
-  createRestaurant(payload) { return api.post('/restaurants', payload) },
-  updateMenu(id, menuPayload) { return api.put(`/restaurants/${id}/menu`, menuPayload) },
-  postReview(id, reviewPayload) { return api.post(`/restaurants/${id}/reviews`, reviewPayload) },
-  getReports() { return api.get('/reports') }
+  getRestaurants() { return api.get('/restaurantes') },
+  getRestaurant(id) { return api.get(`/findRestauranteById/${id}`) },
+  createRestaurant(payload) { return api.post('/cadastrarRestaurante', payload) },
+  updateMenu(menuPayload) { return api.put(`buchoCheio/addPrato/${id}`, menuPayload) },
+  postReview(reviewPayload) { return api.post('/avaliacao', reviewPayload) },
+  getReports() { return api.get('/buildRelatorio') }
 }
