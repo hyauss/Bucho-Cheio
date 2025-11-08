@@ -17,6 +17,9 @@ api.interceptors.response.use(
 )
 
 export default {
+  loginRestaurante(cnpj, senha) {
+    return api.get(`/loginRestaurante/${cnpj}/${senha}`)
+  },
   getRestaurants() {
     return api.get('/restaurantes')
   },
