@@ -15,9 +15,8 @@ public class avaliacaoService {
 	
 	@Autowired private restauranteService restauranteService;
 
-	public avaliacaoModel findAvaliacaoById(Long id){
-		avaliacaoModel avaliacao = avaliacaoRepository.findAvaliacaoById(id);
-		return avaliacao;
+	public List<avaliacaoModel> findAvalicaoByRestauranteId(Long restauranteId){
+		return this.avaliacaoRepository.findByRestauranteId(restauranteId);
 		}
 	
 	public  avaliacaoModel saveAvaliacao(avaliacaoModel avaliacao){
