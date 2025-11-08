@@ -13,7 +13,7 @@ public class pratoModel {
     private Long restauranteId;
     private float preco;
 
-    public Long getRestauranteI() {
+    public Long getRestauranteId() {
         return restauranteId;
     }
 
