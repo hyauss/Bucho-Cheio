@@ -65,4 +65,17 @@ public class pratoService {
 	public List<pratoModel> getAllPratosRestaurante(Long restauranteId) {
 		return this.pratoRepository.findByRestauranteId(restauranteId);
 	}
+
+	public restauranteModel adicionarPratos(Long restauranteId, List<pratoModel> pratos) {
+    restauranteModel restaurante = restauranteRepository.findRestauranteById(restauranteId);
+    	if (restaurante == null) {
+        	throw new RuntimeException("Restaurante não encontrado com ID: " + restauranteId);
+    	}
+    	for (pratoModel prato : pratos) {
+    		prato.setrestauranteId(restauranteId);
+        	pratoModel pratoSalvo = pratoRepository.save(prato);
+        	restaurante.getIdPratos().add(pratoSalvo.getId());
+    	}
+    	return restauranteRepository.save(restaurante);
+	}
 }

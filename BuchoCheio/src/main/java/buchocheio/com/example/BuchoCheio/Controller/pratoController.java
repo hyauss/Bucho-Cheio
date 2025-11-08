@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import buchocheio.com.example.BuchoCheio.Model.pratoModel;
+import buchocheio.com.example.BuchoCheio.Model.restauranteModel;
 import buchocheio.com.example.BuchoCheio.Service.pratoService;
 
 
@@ -36,6 +37,11 @@ public class pratoController {
     @GetMapping("/restaurante/{idRestaurante}/pratos")
     public List getMethodName(@PathVariable Long idRestaurante) {
         return pratoService.getAllPratosRestaurante(idRestaurante);
+    }
+
+    @PostMapping("/restaurante/{id}/pratos")
+    public restauranteModel adicionarPratos(@PathVariable Long id, @RequestBody List<pratoModel> pratos) {
+        return pratoService.adicionarPratos(id, pratos);
     }
     
 }

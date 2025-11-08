@@ -14,6 +14,7 @@ import buchocheio.com.example.BuchoCheio.Model.restauranteModel;
 import buchocheio.com.example.BuchoCheio.Service.restauranteService;
 
 
+
 @RequestMapping("/buchoCheio") // agrupa os endpoints
 @RestController
 
@@ -41,5 +42,4 @@ public class restauranteController {
     public restauranteModel cadastrarRestaurante(@RequestBody restauranteModel restaurante) {
         return restauranteService.cadastrarRestaurante(restaurante);
     }
-
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import buchocheio.com.example.BuchoCheio.Model.loginResponseModel;
 import buchocheio.com.example.BuchoCheio.Model.restauranteModel;
+import buchocheio.com.example.BuchoCheio.Repository.pratoRepository;
 import buchocheio.com.example.BuchoCheio.Repository.restauranteRepository;
 
 @Service
@@ -14,6 +15,9 @@ public class restauranteService {
 
 	@Autowired
 	private restauranteRepository restauranteRepository;
+
+	@Autowired
+	private pratoRepository pratoRepository;
 
 	public boolean Verificarlogar(String id) {
 		String dadoMocadoDoBanco = "asdsadsadsadsda";
@@ -56,5 +60,4 @@ public class restauranteService {
 			return restauranteRepository.save(restaurante);
 		}
 	}
-
 }

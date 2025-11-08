@@ -16,12 +16,12 @@ rectangle Sistema{
 }
 
 ' Relacionamentos
-Rest --> Cad_Rest
-Rest --> Att_Cardapio
+Rest -- Cad_Rest
+Rest -- Att_Cardapio
 
-Usuario --> Cons_Rest
-Usuario --> Aval_Rest
-Usuario --> Obt_Relat
+Usuario -- Cons_Rest
+Usuario -- Aval_Rest
+Usuario -- Obt_Relat
 
 ' Inclusão / Extensão
 
