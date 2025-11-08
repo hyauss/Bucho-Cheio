@@ -42,4 +42,9 @@ public class restauranteController {
     public restauranteModel cadastrarRestaurante(@RequestBody restauranteModel restaurante) {
         return restauranteService.cadastrarRestaurante(restaurante);
     }
+
+    @PutMapping("/atualizarRestaurante/{id}")
+    public restauranteModel atualizarRestaurante(@PathVariable Long id, @RequestBody restauranteModel restaurante) {
+        return restauranteService.atualizarRestaurante(id, restaurante);
+    }
 }

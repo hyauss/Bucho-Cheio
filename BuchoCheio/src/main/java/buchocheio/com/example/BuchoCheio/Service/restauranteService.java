@@ -44,10 +44,23 @@ public class restauranteService {
 			return new loginResponseModel(false, "Restaurante não cadastrado", null);
 		}
 
-		// Comparar conteúdo da String corretamente
 		if (!senha.equals(restaurante.getSenha())) {
 			return new loginResponseModel(false, "Senha incorreta", null);
 		}
+	}
+
+	public restauranteModel atualizarRestaurante(Long id, restauranteModel novosDados) {
+		restauranteModel restaurante = findRestauranteById(id);
+		if (restaurante == null) {
+			throw new RuntimeException("Restaurante não encontrado");
+		}
+		
+		restaurante.setNome(novosDados.getNome());
+		restaurante.setEndereco(novosDados.getEndereco());
+		restaurante.setHorarioFuncionamento(novosDados.getHorarioFuncionamento());
+		restaurante.setTelefone(novosDados.getTelefone());
+		
+		return restauranteRepository.save(restaurante);
 
 		return new loginResponseModel(true, "Login realizado com sucesso", restaurante);
 	}

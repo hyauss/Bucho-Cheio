@@ -6,6 +6,7 @@ import RestaurantFormView from '../views/RestaurantFormView.vue'
 import RestaurantsView from '../views/RestaurantsView.vue'
 import ReviewView from '../views/ReviewView.vue'
 import RestaurantLoginView from '../views/RestaurantLoginView.vue'
+import EditRestaurantView from '../views/EditRestaurantView.vue'
 
 const routes = [
   { path: '/', name: 'home', component: HomeView },
@@ -14,7 +15,8 @@ const routes = [
   { path: '/restaurants/:id/menu', name: 'menu-update', component: MenuUpdateView, props: true, meta: { requiresAuth: true } },
   { path: '/restaurants/:id/review', name: 'review', component: ReviewView, props: true },
   { path: '/reports', name: 'reports', component: ReportsView },
-  { path: '/login', name: 'login', component: RestaurantLoginView }
+  { path: '/login', name: 'login', component: RestaurantLoginView },
+  { path: '/restaurants/:id/edit', name: 'restaurant-edit', component: EditRestaurantView, meta: { requiresAuth: true }, props: true }
 ]
 
 const router = createRouter({

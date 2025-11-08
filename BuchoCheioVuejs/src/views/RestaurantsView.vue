@@ -11,6 +11,7 @@
 
         <button @click="goToMenu(r.id)">Atualizar Cardápio</button>
         <button @click="goToReview(r.id)">Avaliar</button>
+        <button v-if="isOwnRestaurant(r.id)" @click="goToEdit(r.id)">Editar Informações</button>
       </div>
     </div>
   </div>
@@ -35,7 +36,12 @@ export default {
   },
   methods: {
     goToMenu(id) { this.$router.push({ name: 'menu-update', params: { id } }) },
-    goToReview(id) { this.$router.push({ name: 'review', params: { id } }) }
+    goToReview(id) { this.$router.push({ name: 'review', params: { id } }) },
+    goToEdit(id) { this.$router.push({ name: 'restaurant-edit', params: { id } }) },
+    isOwnRestaurant(id) {
+      const restaurant = JSON.parse(localStorage.getItem('restaurant'))
+      return restaurant && restaurant.id === id
+    }
   }
 }
 </script>

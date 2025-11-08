@@ -17,6 +17,9 @@ api.interceptors.response.use(
 )
 
 export default {
+  updateRestaurant(id, payload) {
+    return api.put(`/atualizarRestaurante/${id}`, payload)
+  },
   loginRestaurante(cnpj, senha) {
     return api.get(`/loginRestaurante/${cnpj}/${senha}`)
   },
