@@ -46,4 +46,12 @@ removeDish(idRestaurante, idPrato) {
   return api.delete(`/removePrato/${idRestaurante}/${idPrato}`);
 },
 
+postReview(payload) {
+  return api.post('/avaliacoes', payload)
+},
+
+getReviewsByRestaurant(id) {
+  return api.get(`/avaliacao/restaurante/${id}`)
+}
+
 }
