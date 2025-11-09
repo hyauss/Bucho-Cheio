@@ -52,6 +52,14 @@ postReview(payload) {
 
 getReviewsByRestaurant(id) {
   return api.get(`/avaliacao/restaurante/${id}`)
+},
+
+loginRestaurante(cnpj, senha) {
+  return api.get(`/loginRestaurante/${cnpj}/${senha}`)
+},
+
+getRestaurantByCnpj(cnpj) {
+  return axios.get(`/findRestauranteBycnpj/${cnpj}`);
 }
 
 }

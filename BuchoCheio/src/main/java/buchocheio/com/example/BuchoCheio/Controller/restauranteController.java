@@ -28,6 +28,11 @@ public class restauranteController {
         return restauranteService.findRestauranteById(id);
     }
 
+    @GetMapping("/findRestauranteBycnpj/{cnpj}")
+    public restauranteModel findRestauranteBycnpj(@PathVariable String cnpj) {
+        return restauranteService.findRestauranteBycnpj(cnpj);
+    }
+
      @GetMapping("/restaurantes")
     public List getAllRestaurantes() {
         return restauranteService.getAllRestaurantes();
