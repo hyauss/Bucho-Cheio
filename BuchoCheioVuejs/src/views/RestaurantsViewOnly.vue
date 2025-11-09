@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Restaurantes</h2>
+    <h2>Restaurantes  </h2>
     <div v-if="loading">Carregando...</div>
     <div v-else>
       <div v-if="restaurants.length === 0">Nenhum restaurante encontrado.</div>

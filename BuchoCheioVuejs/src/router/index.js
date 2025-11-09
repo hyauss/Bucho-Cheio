@@ -11,24 +11,32 @@ import RestaurantsView from '../views/RestaurantsView.vue'
 import RestaurantsViewOnly from '../views/RestaurantsViewOnly.vue'
 import ReviewView from '../views/ReviewView.vue'
 
-
 const routes = [
-  { path: '/', name: 'home', component: HomeView },
+  { path: '/', name: 'home', component: HomeView,props: true, },
 
   // Tela de login (pública)
-  { path: '/login', name: 'login', component: LoginView },
+  { path: '/login', name: 'login', component: LoginView, props: true },
 
   {
     path: '/reports',
     name: 'reports',
     component: ReportsView,
+    props: true,
   },
   {
     path: '/restaurantesViewOnly',
     name: 'restaurantesViewOnly',
     component: RestaurantsViewOnly,
+    props: true,
   },
-  
+
+  {
+    path: '/restaurants/:id/review',
+    name: 'review',
+    component: ReviewView,
+    props: true,
+  },
+
   { path: '/restaurants/:id/menu-view', name: 'menu-view', component: MenuView, props: true },
 
   // Rotas protegidas
@@ -48,13 +56,6 @@ const routes = [
     path: '/restaurants/:id/menu',
     name: 'menu-update',
     component: MenuUpdateView,
-    props: true,
-    meta: { requiresAuth: true },
-  },
-  {
-    path: '/restaurants/:id/review',
-    name: 'review',
-    component: ReviewView,
     props: true,
     meta: { requiresAuth: true },
   },
