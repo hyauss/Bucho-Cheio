@@ -22,6 +22,7 @@
 
 <script>
 import api from '../services/api';
+import { eventBus } from '../services/eventBus';
 
 export default {
   data() {
@@ -45,13 +46,11 @@ export default {
 
         // salva o restaurante logado localmente
         localStorage.setItem('restauranteLogado', JSON.stringify(res.data.restaurante));
-
+        eventBus.usuarioLogado = true;
         alert('Login realizado com sucesso!');
-
-        // redireciona para a tela de edição do cardápio
+        // redireciona para a home
         this.$router.push({
-          name: 'menu-update', // nome da rota no router/index.js
-          params: { id: res.data.restaurante.id }
+          name: 'home', // nome da rota no router/index.js
         });
       } catch (err) {
         console.error(err);
