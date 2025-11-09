@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Avaliar Restaurante {{ id }}</h2>
+    <h2>Avaliar Restaurante {{ nomeRestaurante }}</h2>
 
     <form @submit.prevent="sendReview">
       <div>
@@ -42,11 +42,14 @@ export default {
       nota: 5,
       avaliacao: '',
       avaliacoes: [],
-      loading: true
+      loading: true,
     }
   },
   async created() {
-    await this.loadReviews();
+    // Busca o restaurante para obter o nome
+    const resRestaurante = await api.getRestaurant(this.id)
+    this.nomeRestaurante = resRestaurante.data.nome
+    await this.loadReviews()
   },
   methods: {
     async loadReviews() {
@@ -65,7 +68,7 @@ export default {
         const payload = {
           restauranteId: this.id,
           avaliacao: this.avaliacao,
-          nota: this.nota
+          nota: this.nota,
         }
         await api.postReview(payload)
         alert('Avaliação enviada!')
@@ -76,8 +79,8 @@ export default {
         console.error(err)
         alert('Erro ao enviar avaliação')
       }
-    }
-  }
+    },
+  },
 }
 </script>
 

@@ -33,10 +33,15 @@ public class restauranteService {
 		return restaurante;
 	}
 
-	public List getAllRestaurantes(){
+	public restauranteModel findRestauranteBycnpj(String id) {
+		restauranteModel restaurante = restauranteRepository.findRestauranteBycnpj(id);
+		return restaurante;
+	}
+
+	public List getAllRestaurantes() {
 		return this.restauranteRepository.findAll();
 	}
-	
+
 	public loginResponseModel loginRestaurante(String cnpj, String senha) {
 		restauranteModel restaurante = restauranteRepository.findRestauranteBycnpj(cnpj);
 

@@ -7,7 +7,7 @@
     </p>
 
     <div class="actions">
-      <button @click="$router.push('/restaurants')">Consultar Restaurantes</button>
+      <button @click="$router.push('/restaurantesViewOnly')">Consultar Restaurantes</button>
       <button @click="$router.push('/restaurants/new')">Cadastrar Restaurante</button>
       <button @click="$router.push('/reports')">Obter Relatórios</button>
     </div>

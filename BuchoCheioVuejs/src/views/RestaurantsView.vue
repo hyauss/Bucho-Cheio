@@ -1,41 +1,65 @@
 <template>
   <div>
-    <h2>Restaurantes</h2>
-    <div v-if="loading">Carregando...</div>
-    <div v-else>
-      <div v-if="restaurants.length === 0">Nenhum restaurante encontrado.</div>
-      <div v-for="r in restaurants" :key="r.id" style="border:1px solid #ddd;padding:12px;margin:8px 0;">
-        <h3>{{ r.nome }}</h3>
-        <p><strong>Endereço:</strong> {{ r.endereco }}</p>
-        <p><strong>CNPJ:</strong> {{ r.cnpj }}</p>
+    <h2>Meu Restaurante</h2>
 
-        <button @click="goToMenu(r.id)">Atualizar Cardápio</button>
-        <button @click="goToReview(r.id)">Avaliar</button>
-      </div>
+    <div v-if="loading">Carregando...</div>
+
+    <div v-else-if="!restaurante">
+      <p>Nenhum restaurante associado encontrado.</p>
+    </div>
+
+    <div v-else style="border:1px solid #ddd;padding:12px;margin:8px 0;">
+      <h3>{{ restaurante.nome }}</h3>
+      <p><strong>Endereço:</strong> {{ restaurante.endereco }}</p>
+      <p><strong>CNPJ:</strong> {{ restaurante.cnpj }}</p>
+
+      <button @click="goToMenu(restaurante.id)">Ver Cardápio</button>
+      <button @click="goToReview(restaurante.id)">Avaliar</button>
     </div>
   </div>
 </template>
 
 <script>
 import api from '../services/api';
+
 export default {
   data() {
-    return { restaurants: [], loading: true }
+    return {
+      restaurante: null,
+      loading: true
+    };
   },
   async created() {
     try {
-      const res = await api.getRestaurants()
-      this.restaurants = res.data
+      // Recupera o restaurante logado do localStorage
+      const stored = localStorage.getItem('restauranteLogado');
+      if (!stored) {
+        alert('Nenhum restaurante logado!');
+        this.$router.push('/login');
+        return;
+      }
+
+      const restauranteLogado = JSON.parse(stored);
+      const cnpj = restauranteLogado.cnpj;
+
+      // Busca todos e filtra pelo CNPJ, ou poderia usar endpoint direto
+      const res = await api.getRestaurants();
+      const lista = res.data || [];
+      this.restaurante = lista.find(r => r.cnpj === cnpj) || null;
     } catch (err) {
-      console.error(err)
-      alert('Erro ao buscar restaurantes')
+      console.error(err);
+      alert('Erro ao buscar restaurante.');
     } finally {
-      this.loading = false
+      this.loading = false;
     }
   },
   methods: {
-    goToMenu(id) { this.$router.push({ name: 'menu-update', params: { id } }) },
-    goToReview(id) { this.$router.push({ name: 'review', params: { id } }) }
+    goToMenu(id) {
+      this.$router.push({ name: 'menu-update', params: { id } });
+    },
+    goToReview(id) {
+      this.$router.push({ name: 'review', params: { id } });
+    }
   }
-}
+};
 </script>

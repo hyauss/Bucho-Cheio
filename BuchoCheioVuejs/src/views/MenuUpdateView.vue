@@ -1,6 +1,6 @@
 <template>
   <div class="update-menu">
-    <h2>Atualizar Cardápio - Restaurante {{ id }}</h2>
+    <h2>Atualizar Cardápio - Restaurante {{ nomeRestaurante }}</h2>
 
     <div v-if="loading" class="loading">
       <p>Carregando cardápio...</p>
@@ -86,6 +86,7 @@ export default {
 
   data() {
     return {
+      nomeRestaurante: '',
       menu: [],
       newItem: { nome: '', descricao: '', preco: 0 },
       loading: true,
@@ -96,11 +97,16 @@ export default {
 
   async created() {
     try {
-      const res = await api.getRestaurantMenu(this.id)
-      this.menu = res.data || []
+      // Busca o restaurante para obter o nome
+      const resRestaurante = await api.getRestaurant(this.id)
+      this.nomeRestaurante = resRestaurante.data.nome
+
+      // Busca o cardápio do restaurante
+      const resMenu = await api.getRestaurantMenu(this.id)
+      this.menu = resMenu.data || []
     } catch (err) {
       console.error(err)
-      alert('Erro ao carregar cardápio do restaurante.')
+      alert('Erro ao carregar informações do restaurante.')
     } finally {
       this.loading = false
     }
@@ -149,7 +155,7 @@ export default {
     async saveEdit(index) {
       try {
         const res = await api.updateDish(this.id, this.editItem)
-        this.menu[index] = res.data // <-- substitui o antigo $set
+        this.menu[index] = res.data
         this.cancelEdit()
         alert('Prato atualizado!')
       } catch (err) {
@@ -159,7 +165,6 @@ export default {
     },
 
     async saveMenu() {
-      // Opcional: re-salva tudo (caso queira manter o botão no rodapé)
       try {
         await api.updateMenu(this.id, this.menu)
         alert('Cardápio sincronizado com sucesso!')
@@ -178,26 +183,21 @@ export default {
   margin: 0 auto;
   padding: 1.5rem;
 }
-
 .loading {
   text-align: center;
 }
-
 .new-item,
 .menu-list {
   margin-bottom: 2rem;
 }
-
 .input-group {
   margin-bottom: 0.75rem;
 }
-
 .input-group label {
   display: block;
   font-weight: 600;
   margin-bottom: 0.25rem;
 }
-
 .input-group input,
 .input-group textarea {
   width: 100%;
@@ -205,7 +205,6 @@ export default {
   border-radius: 6px;
   border: 1px solid #ccc;
 }
-
 .menu-item {
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -213,11 +212,9 @@ export default {
   margin-bottom: 0.75rem;
   background: #fafafa;
 }
-
 .actions {
   margin-top: 0.5rem;
 }
-
 .btn-add,
 .btn-save,
 .btn-remove,
@@ -231,38 +228,31 @@ export default {
   font-weight: 600;
   margin-right: 0.25rem;
 }
-
 .btn-add {
   background-color: #4caf50;
   color: white;
 }
-
 .btn-save {
   background-color: #2196f3;
   color: white;
   width: 100%;
 }
-
 .btn-edit {
   background-color: #ff9800;
   color: white;
 }
-
 .btn-save-edit {
   background-color: #4caf50;
   color: white;
 }
-
 .btn-cancel-edit {
   background-color: #9e9e9e;
   color: white;
 }
-
 .btn-remove {
   background-color: #f44336;
   color: white;
 }
-
 .input-edit {
   width: 100%;
   margin-bottom: 0.5rem;
@@ -270,7 +260,6 @@ export default {
   border-radius: 6px;
   border: 1px solid #ccc;
 }
-
 .empty {
   color: #666;
   font-style: italic;
