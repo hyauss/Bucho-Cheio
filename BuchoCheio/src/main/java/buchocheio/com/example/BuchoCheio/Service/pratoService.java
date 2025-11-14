@@ -9,6 +9,7 @@ import buchocheio.com.example.BuchoCheio.Model.pratoModel;
 import buchocheio.com.example.BuchoCheio.Model.restauranteModel;
 import buchocheio.com.example.BuchoCheio.Repository.pratoRepository;
 import buchocheio.com.example.BuchoCheio.Repository.restauranteRepository;
+import jakarta.transaction.Transactional;
 
 @Service
 public class pratoService {
@@ -22,6 +23,7 @@ public class pratoService {
 	@Autowired
 	private pratoRepository pratoRepository;
 
+	@Transactional
 	public pratoModel addPrato(Long idRestaurante, pratoModel prato) {
 		restauranteModel restaurante = restauranteService.findRestauranteById(idRestaurante);
 		if (restaurante == null) {
