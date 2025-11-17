@@ -107,7 +107,7 @@ class BuchoCheioApplicationTests {
 	void verificarCadastrarAvaliacao() {
 
 		restauranteModel restaurante = new restauranteModel(
-				null,
+				2L,
 				List.of(10L, 20L, 30L),
 				"Rua das Flores, 123 - Centro",
 				"Restaurante Sabor Caseiro",
@@ -120,7 +120,7 @@ class BuchoCheioApplicationTests {
 		// Criar avaliação para salvar
 		avaliacaoModel avaliacao = new avaliacaoModel(
 				null, // id gerado pelo banco
-				1L, // restauranteId
+				2L, // restauranteId
 				"bleble", // avaliação
 				5 // nota
 		);
